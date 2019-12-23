@@ -1,24 +1,24 @@
 
-# Stereo R-CNN based 3D Object Detection for Autonomous Driving - PyTorch
+# VoxelNet: End-to-End Learning for Point Cloud Based 3D Object Detection - PyTorch
 
-PyTorch implementation of the paper [Stereo R-CNN based 3D Object Detection for Autonomous Driving](https://arxiv.org/abs/1902.09738) based on previous work in [this repo](https://github.com/skyhehe123/VoxelNet-pytorch).
+PyTorch implementation of the paper [VoxelNet: End-to-End Learning for Point Cloud Based 3D Object Detection](https://arxiv.org/abs/1711.06396) based on previous work in [this repo](https://github.com/skyhehe123/VoxelNet-pytorch).
 
 The file **todo.sh** contains all build instructions, so either run it with ./todo.sh or copy paste the following into your shell.
 ```
-docker build -t deepsort .
+docker build -t voxelnet .
 
 docker volume create --opt type=none \
                      --opt o=bind \
                      --opt device=. \
-                     dpsrt-vol
+                     vxlnt-vol
 
 docker run --gpus all -it \
            -p 5001:6006 \
-           --name deepsort_cnt \
-           -v dpsrt-vol:/home/PyTorch-YOLOv3/:rw \
-           deepsort
+           --name voxelnet_cnt \
+           -v vxlnt-vol:/home/PyTorch-YOLOv3/:rw \
+           voxelnet
 
-cd Object-Tracking/deep_sort_pytorch
+cd VoxelNet-pytorch
 
 python demo.py
 ```
