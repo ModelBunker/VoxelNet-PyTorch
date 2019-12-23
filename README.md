@@ -1,14 +1,41 @@
-# Introduction
+
+# Stereo R-CNN based 3D Object Detection for Autonomous Driving - PyTorch
+
+PyTorch implementation of the paper [Stereo R-CNN based 3D Object Detection for Autonomous Driving](https://arxiv.org/abs/1902.09738) based on previous work in [this repo](https://github.com/skyhehe123/VoxelNet-pytorch).
+
+The file **todo.sh** contains all build instructions, so either run it with ./todo.sh or copy paste the following into your shell.
+```
+docker build -t deepsort .
+
+docker volume create --opt type=none \
+                     --opt o=bind \
+                     --opt device=. \
+                     dpsrt-vol
+
+docker run --gpus all -it \
+           -p 5001:6006 \
+           --name deepsort_cnt \
+           -v dpsrt-vol:/home/PyTorch-YOLOv3/:rw \
+           deepsort
+
+cd Object-Tracking/deep_sort_pytorch
+
+python demo.py
+```
+
+
+
+## Introduction
 
 This is an unofficial implementation of [VoxelNet: End-to-End Learning for Point Cloud Based 3D Object Detection](https://arxiv.org/abs/1711.06396) in pytorch. A large part of this project is based on the work [here](https://github.com/jeasinema/VoxelNet-tensorflow)
-# Dependencies
+## Dependencies
 - `python3.5+`
 - `pytorch` (tested on 0.3.1)
 - `opencv`
 - `shapely`
 - `mayavi`
 
-# Installation
+## Installation
 1. Clone this repository.
 2. Compile the Cython module for box_overlaps
 ```bash
@@ -20,7 +47,7 @@ $ python3 nms/build.py
 ```
 
 
-# Data Preparation
+## Data Preparation
 1. Download the 3D KITTI detection dataset from [here](http://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=3d). Data to download include:
     * Velodyne point clouds (29 GB): input data to VoxelNet
     * Training labels of object data set (5 MB): input label to VoxelNet
@@ -46,12 +73,13 @@ $ python3 data/crop.py
        |   └── crop
 ```
 
-# Train
+## Train
 
+```bash
+$ python3 train.py
+```
 
-
-
-# TODO
+## TODO
 - [x] training code
 - [x] data augmentation
 - [ ] validation code
